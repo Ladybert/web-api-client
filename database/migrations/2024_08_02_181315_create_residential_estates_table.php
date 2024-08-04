@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('residential_estates', function (Blueprint $table) {
             $table->id();
             $table->string('image');
-            $table->string('name');
+            $table->string('housing_name');
             $table->unsignedBigInteger('unit_type_id');
             $table->text('description');
             $table->string('size');
