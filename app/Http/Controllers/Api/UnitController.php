@@ -64,7 +64,7 @@ class UnitController extends Controller
 
         // Create the residential estate
         $unit = UnitApi::create([
-            'name' => $request->housing_name,
+            'name' => $request->name,
             'image' => $imagePath,
             'unit_type_id' => $request->unit_type_id,
             'description' => $request->description,
@@ -142,7 +142,7 @@ class UnitController extends Controller
 
         // Update residential estate
         $unit->update([
-            'name' => $request->housing_name,
+            'name' => $request->name,
             'image' => $imagePath,
             'unit_type_id' => $request->unit_type_id,
             'description' => $request->description,
