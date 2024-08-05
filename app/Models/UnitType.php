@@ -9,13 +9,15 @@ class UnitType extends Model
 {
     use HasFactory;
 
+    protected $table = 'unit_type';
+
     protected $fillable = [
         'name'
     ];
 
     // Define the relationship with ResidentialEstate
-    public function residentialEstates()
+    public function Unit()
     {
-        return $this->hasMany(ResidentialEstate::class, 'unit_type_id');
+        return $this->hasMany(Unit::class, 'unit_type_id');
     }
 }
