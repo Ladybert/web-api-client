@@ -4,7 +4,7 @@ namespace App\Filament\Resources;
 
 use App\Filament\Resources\ResidentialEstateResource\Pages;
 use App\Filament\Resources\ResidentialEstateResource\RelationManagers;
-use App\Models\ResidentialEstate;
+use App\Models\Unit;
 use Filament\Forms;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
@@ -15,7 +15,7 @@ use Illuminate\Database\Eloquent\SoftDeletingScope;
 
 class ResidentialEstateResource extends Resource
 {
-    protected static ?string $model = ResidentialEstate::class;
+    protected static ?string $model = Unit::class;
 
     protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
 

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\ResidentialEstate;
+use App\Models\Unit;
 use Illuminate\Http\Request;
 
-class ResidentialEstateController extends Controller
+class UnitController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class ResidentialEstateController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(ResidentialEstate $residentialEstate)
+    public function show(Unit $unit)
     {
         //
     }
@@ -42,7 +42,7 @@ class ResidentialEstateController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(ResidentialEstate $residentialEstate)
+    public function edit(Unit $unit)
     {
         //
     }
@@ -50,7 +50,7 @@ class ResidentialEstateController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, ResidentialEstate $residentialEstate)
+    public function update(Request $request, Unit $unit)
     {
         //
     }
@@ -58,7 +58,7 @@ class ResidentialEstateController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(ResidentialEstate $residentialEstate)
+    public function destroy(Unit $unit)
     {
         //
     }

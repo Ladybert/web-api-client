@@ -5,17 +5,18 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ResidentialEstate extends Model
+class Unit extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'housing_name',
+        'name',
         'image',
         'unit_type_id',
         'description',
         'size',
         'location',
+        'address',
     ];
 
     // Define the relationship with UnitType

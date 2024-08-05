@@ -5,7 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ResidentialEstateResource extends JsonResource
+class UnitResource extends JsonResource
 {
     public $status;
     public $message;
@@ -64,11 +64,12 @@ class ResidentialEstateResource extends JsonResource
             'data'    => [
                 'id'          => $this->resource->id,
                 'image'       => $this->resource->image,
-                'housing_name'=> $this->resource->housing_name,
+                'name'=> $this->resource->name,
                 'unit_type'   => new UnitTypeResource($this->whenLoaded('unitType')),
                 'description' => $this->resource->description,
                 'size'        => $this->resource->size,
                 'location'    => $this->resource->location,
+                'address'    => $this->resource->address,
                 'created_at' => $this->created_at,
                 'updated_at' => $this->updated_at,
             ],

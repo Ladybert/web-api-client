@@ -11,14 +11,15 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('residential_estates', function (Blueprint $table) {
+        Schema::create('unit', function (Blueprint $table) {
             $table->id();
             $table->string('image');
-            $table->string('housing_name');
+            $table->string('name');
             $table->unsignedBigInteger('unit_type_id');
             $table->text('description');
             $table->string('size');
             $table->string('location');
+            $table->string('address');
             $table->timestamps();
 
             // Define foreign key constraint
