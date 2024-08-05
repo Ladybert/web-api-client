@@ -10,4 +10,4 @@ Route::get('/user', function (Request $request) {
 })->middleware('auth:sanctum');
 
 Route::apiResource('/unit-type', UnitTypeController::class);
-Route::apiResource('/residential-estate', UnitController::class);
+Route::apiResource('/unit', UnitController::class);
