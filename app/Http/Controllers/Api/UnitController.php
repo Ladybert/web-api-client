@@ -38,7 +38,8 @@ class UnitController extends Controller
             'unit_type_id' => 'required|exists:unit_types,id',
             'description' => 'required|string',
             'size' => 'required|string',
-            'location' => 'required|string',
+            'city' => 'required|string',
+            'province' => 'required|string',
             'address' => 'required|string',
         ]);
 
@@ -69,7 +70,8 @@ class UnitController extends Controller
             'unit_type_id' => $request->unit_type_id,
             'description' => $request->description,
             'size' => $request->size,
-            'location' => $request->location,
+            'city' => $request->city,
+            'province' => $request->province,
             'address' => $request->address,
         ]);
 
@@ -107,7 +109,8 @@ class UnitController extends Controller
             'unit_type_id' => 'required|exists:unit_types,id',
             'description' => 'nullable|string',
             'size' => 'nullable|string',
-            'location' => 'nullable|string',
+            'city' => 'nullable|string',
+            'province' => 'nullable|string',
             'address' => 'nullable|string',
         ]);
 
@@ -147,7 +150,8 @@ class UnitController extends Controller
             'unit_type_id' => $request->unit_type_id,
             'description' => $request->description,
             'size' => $request->size,
-            'location' => $request->location,
+            'city' => $request->city,
+            'province' => $request->province,
             'address' => $request->address,
         ]);
 

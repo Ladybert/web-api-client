@@ -15,7 +15,8 @@ class Unit extends Model
         'unit_type_id',
         'description',
         'size',
-        'location',
+        'city',
+        'province',
         'address',
     ];
 

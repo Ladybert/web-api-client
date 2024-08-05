@@ -18,7 +18,8 @@ return new class extends Migration
             $table->unsignedBigInteger('unit_type_id');
             $table->text('description');
             $table->string('size');
-            $table->string('location');
+            $table->string('city');
+            $table->string('province');
             $table->string('address');
             $table->timestamps();
 
