@@ -19,7 +19,6 @@ class UnitController extends Controller
     {
         // Get all residential estates with pagination
         $unit = UnitApi::with('unitType')->latest()->paginate(5);
-        
         // Return a response using the resource with status code 200 (OK)
         return (new UnitResource(true, 'List Data Residential Estates', $unit, 200))
                 ->response()
@@ -34,7 +33,7 @@ class UnitController extends Controller
         // Define validation rules
         $validator = Validator::make($request->all(), [
             'name' => 'required|unique:unit,name|string',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:500048',
+            'image.*' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:500048',
             'unit_type_id' => 'required|exists:unit_types,id',
             'description' => 'required|string',
             'size' => 'required|string',
@@ -45,7 +44,6 @@ class UnitController extends Controller
 
         // Check if validation fails
         if ($validator->fails()) {
-            // Return a response with status code 422 (Unprocessable Entity)
             return response()->json([
                 'success' => false,
                 'message' => 'Validation Errors',
@@ -55,18 +53,20 @@ class UnitController extends Controller
         }
 
         // Handle file upload
+        $imagePaths = [];
+
         if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imagePath = $image->storeAs('public/residential_estate', $image->hashName());
-            $imagePath = 'storage/residential_estate/' . $image->hashName();
-        } else {
-            $imagePath = null;
+            foreach ($request->file('image') as $image) {
+                // Store image and get the filename
+                $imagePath = $image->store('residential_estate', 'public');
+                $imagePaths[] = Storage::url($imagePath);
+            }
         }
 
         // Create the residential estate
         $unit = UnitApi::create([
             'name' => $request->name,
-            'image' => $imagePath,
+            'image' => json_encode($imagePaths),
             'unit_type_id' => $request->unit_type_id,
             'description' => $request->description,
             'size' => $request->size,
@@ -75,7 +75,6 @@ class UnitController extends Controller
             'address' => $request->address,
         ]);
 
-        // Return response with status code 201 (Created)
         return (new UnitResource(true, 'Residential estate data added successfully!', $unit, 201))
                     ->response()
                     ->setStatusCode(201);
@@ -86,10 +85,8 @@ class UnitController extends Controller
      */
     public function show(string $id)
     {
-        // Find the residential estate by ID and include unitType relationship
         $unit = UnitApi::with('unitType')->findOrFail($id);
 
-        // Return a response using the resource with status code 200 (OK)
         return (new UnitResource(true, 'Residential estate data retrieved successfully!', $unit, 200))
                     ->response()
                     ->setStatusCode(200);
@@ -100,12 +97,10 @@ class UnitController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        // Debugging
-        log::info('Request Data:', $request->all());
         // Define validation rules
         $validator = Validator::make($request->all(), [
-            'name' => 'required|string|max:255|unique:unit,name,'.$id,
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:500048',
+            'name' => 'required|string|max:255|unique:unit,name',
+            'image.*' => 'image|mimes:jpeg,png,jpg,gif,svg|max:500048',
             'unit_type_id' => 'required|exists:unit_types,id',
             'description' => 'nullable|string',
             'size' => 'nullable|string',
@@ -116,7 +111,6 @@ class UnitController extends Controller
 
         // Check if validation fails
         if ($validator->fails()) {
-            // Return a response with status code 422 (Unprocessable Entity)
             return response()->json([
                 'success' => false,
                 'message' => 'Validation Errors',
@@ -125,28 +119,47 @@ class UnitController extends Controller
             ], 422);
         }
 
-        // Find the residential estate by ID
-        $unit = UnitApi::with('unitType')->findOrFail($id);
+        $unit = UnitApi::findOrFail($id);
 
-        // Initialize $imagePath with current image path
-        $imagePath = $unit->image;
+        // Ensure $unit->image is a valid JSON string and decode it
+        $oldImages = [];
 
-        // Check if there is a new image file
-        if ($request->hasFile('image')) {
-            $image = $request->file('image');
-            $imagePath = $image->storeAs('public/unit', $image->hashName());
-            $imagePath = 'storage/unit/' . $image->hashName();
-            
-            // Delete old image file if it exists
-            if ($unit->image && Storage::exists($unit->image)) {
-                Storage::delete($unit->image);
+        if (is_string($unit->image)) {
+            $decodedImages = json_decode($unit->image, true);
+            if (json_last_error() === JSON_ERROR_NONE && is_array($decodedImages)) {
+                $oldImages = $decodedImages;
+            } else {
+                Log::error('JSON decode error:', ['error' => json_last_error_msg()]);
             }
+        } elseif (is_array($unit->image)) {
+            $oldImages = $unit->image;
         }
 
-        // Update residential estate
+        $newImages = [];
+
+        if ($request->hasFile('image')) {
+            foreach ($request->file('image') as $image) {
+                // Store the file on the 'public' disk
+                $imagePath = $image->store('residential_estate', 'public');
+                $newImages[] = Storage::url($imagePath);
+            }
+        
+            // Log new images for debugging
+            Log::info('New images:', ['newImages' => $newImages]);
+        
+            // Handle old images deletion
+            foreach ($oldImages as $oldImage) {
+                $oldImagePath = 'public/' . str_replace('storage/', '', $oldImage);
+                if (Storage::disk('public')->exists($oldImagePath)) {
+                    Storage::disk('public')->delete($oldImagePath);
+                }
+            }
+        }
+        
+
         $unit->update([
             'name' => $request->name,
-            'image' => $imagePath,
+            'image' => json_encode($newImages),
             'unit_type_id' => $request->unit_type_id,
             'description' => $request->description,
             'size' => $request->size,
@@ -155,36 +168,44 @@ class UnitController extends Controller
             'address' => $request->address,
         ]);
 
-        // Return response with status code 200 (OK)
         return (new UnitResource(true, 'Residential estate data updated successfully!', $unit, 200))
                     ->response()
                     ->setStatusCode(200);
     }
-
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        // Log the incoming ID for debugging
         Log::info('Attempting to delete Residential Estate with ID: ' . $id);
-
-        // Use find() for debugging
+            
         $unit = UnitApi::findOrFail($id);
 
-        if (!$unit) {
-            return response()->json(['success' => false, 'message' => 'Residential Estate not found'], 404);
+        $images = [];
+        if (is_string($unit->image)) {
+            $images = json_decode($unit->image, true) ?: [];
+        } elseif (is_array($unit->image)) {
+            $images = $unit->image;
         }
 
-        // Proceed with deletion
-        if ($unit->image && Storage::exists($unit->image)) {
-            Storage::delete($unit->image);
+        foreach ($images as $image) {
+            // Remove the 'storage/' prefix to get the relative path
+            $relativePath = str_replace('storage/', '', $image);
+            // Construct the path for the public disk
+            $imagePath = 'public/' . $relativePath;
+
+            if (Storage::exists($imagePath)) {
+                Storage::delete($imagePath);
+                Log::info('Deleted image: ' . $imagePath);
+            } else {
+                Log::warning('Image not found: ' . $imagePath);
+            }
         }
+
 
         $unit->delete();
 
         return response()->json(['success' => true, 'message' => 'Residential Estate data deleted successfully!'], 200);
-                    
     }
 }

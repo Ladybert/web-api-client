@@ -63,16 +63,16 @@ class UnitResource extends JsonResource
             'message' => $this->message,
             'data'    => [
                 'id'          => $this->resource->id,
-                'image'       => $this->resource->image,
-                'name'=> $this->resource->name,
+                'image'       => $this->resource->image, // Make sure images are decoded properly
+                'name'        => $this->resource->name,
                 'unit_type'   => new UnitTypeResource($this->whenLoaded('unitType')),
                 'description' => $this->resource->description,
                 'size'        => $this->resource->size,
-                'city'    => $this->resource->city,
+                'city'        => $this->resource->city,
                 'province'    => $this->resource->province,
-                'address'    => $this->resource->address,
-                'created_at' => $this->created_at,
-                'updated_at' => $this->updated_at,
+                'address'     => $this->resource->address,
+                'created_at'  => $this->created_at,
+                'updated_at'  => $this->updated_at,
             ],
             'status'  => $this->statusCode,
         ];
