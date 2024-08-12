@@ -1,13 +1,3 @@
-<?php
-
-use App\Http\Controllers\Api\UnitTypeController;
-use App\Http\Controllers\Api\UnitController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Route;
-
-Route::get('/user', function (Request $request) {
-    return $request->user();
-})->middleware('auth:sanctum');
-
-Route::apiResource('/unit-type', UnitTypeController::class);
-Route::apiResource('/unit', UnitController::class);
+version https://git-lfs.github.com/spec/v1
+oid sha256:dbd64977037d3065279dbe89c27260900e38eeef7013a002394a7808a8ba9daf
+size 667

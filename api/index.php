@@ -1,13 +1,3 @@
-<?php
- 
-// Load the Laravel application
-require __DIR__ . '/../vendor/autoload.php';
-$app = require_once __DIR__ . '/../bootstrap/app.php';
- 
-// Run the application
-$kernel = $app->make(Illuminate\Contracts\Http\Kernel::class);
-$response = $kernel->handle(
-    $request = Illuminate\Http\Request::capture()
-);
-$response->send();
-$kernel->terminate($request, $response);
+version https://git-lfs.github.com/spec/v1
+oid sha256:50bc0b9fbb455fa7df6fe896dbf1d1d6847a678d96bb33fca759701f5997b793
+size 369

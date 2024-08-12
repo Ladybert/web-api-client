@@ -1,19 +1,3 @@
-<?php
-
-namespace App\Filament\Resources\ResidentialEstateResource\Pages;
-
-use App\Filament\Resources\ResidentialEstateResource;
-use Filament\Actions;
-use Filament\Resources\Pages\ManageRecords;
-
-class ManageResidentialEstates extends ManageRecords
-{
-    protected static string $resource = ResidentialEstateResource::class;
-
-    protected function getHeaderActions(): array
-    {
-        return [
-            Actions\CreateAction::make(),
-        ];
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:0432a8e1fe936b5ee4471d879f06bc739e776dc86b95e5db99e6148be222ab8f
+size 458
