@@ -3,6 +3,6 @@ oid sha256:d8d6e032caf1335f144e4cda7b4ed977eaae91e220eb15e11b8fd57cdf0617c9
 size 368
 *.js filter=lfs diff=lfs merge=lfs -text
 **/**/*.js filter=lfs diff=lfs merge=lfs -text
-*.png filter=lfs diff=lfs merge=lfs -text
 *.zip filter=lfs diff=lfs merge=lfs -text
+*.png filter=lfs diff=lfs merge=lfs -text
 *.php filter=lfs diff=lfs merge=lfs -text
