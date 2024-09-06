@@ -1,19 +1,3 @@
-<?php
-
-use Illuminate\Foundation\Application;
-use Illuminate\Foundation\Configuration\Exceptions;
-use Illuminate\Foundation\Configuration\Middleware;
-
-return Application::configure(basePath: dirname(__DIR__))
-    ->withRouting(
-        web: __DIR__.'/../routes/web.php',
-        api: __DIR__.'/../routes/api.php',
-        commands: __DIR__.'/../routes/console.php',
-        health: '/up',
-    )
-    ->withMiddleware(function (Middleware $middleware) {
-        //
-    })
-    ->withExceptions(function (Exceptions $exceptions) {
-        //
-    })->create();
+version https://git-lfs.github.com/spec/v1
+oid sha256:bb9b3d2c1616a12641a90059a903f0f787ad82db9090b9ea4d5b691461a63b0d
+size 556

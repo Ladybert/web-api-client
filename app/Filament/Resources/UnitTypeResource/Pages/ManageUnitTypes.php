@@ -1,19 +1,3 @@
-<?php
-
-namespace App\Filament\Resources\UnitTypeResource\Pages;
-
-use App\Filament\Resources\UnitTypeResource;
-use Filament\Actions;
-use Filament\Resources\Pages\ManageRecords;
-
-class ManageUnitTypes extends ManageRecords
-{
-    protected static string $resource = UnitTypeResource::class;
-
-    protected function getHeaderActions(): array
-    {
-        return [
-            Actions\CreateAction::make(),
-        ];
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:6a3772f61853980a9172fb2fdab4cc733093c61bc59173790be2235e18b9970b
+size 422

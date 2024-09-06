@@ -1,29 +1,3 @@
-{
-    "version": 2,
-    "functions": {
-        "api/index.php": {
-            "runtime": "vercel-php@0.6.0"
-        }
-    },
-    "routes": [
-        {
-            "src": "/(.*)",
-            "dest": "/api/index.php"
-        }
-    ],
-    "env": {
-        "APP_ENV": "production",
-        "APP_DEBUG": "true",
-        "APP_URL": "https://apikprrumah.com",
-        "APP_KEY": "base64:aBWdnT9DYIq9q29VtTUcGOmBou+FQIUfoxLDkErc5qo=",
-        "APP_CONFIG_CACHE": "/tmp/config.php",
-        "APP_EVENTS_CACHE": "/tmp/events.php",
-        "APP_PACKAGES_CACHE": "/tmp/packages.php",
-        "APP_ROUTES_CACHE": "/tmp/routes.php",
-        "APP_SERVICES_CACHE": "/tmp/services.php",
-        "VIEW_COMPILED_PATH": "/tmp",
-        "CACHE_DRIVER": "array",
-        "LOG_CHANNEL": "stderr",
-        "SESSION_DRIVER": "cookie"
-    }
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:870723a37c7f4b1e6f2264f1a31d698f2a8306ef9dad2dcde9889bd3ae9549ff
+size 818

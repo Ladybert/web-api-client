@@ -1,21 +1,3 @@
-import preset from './vendor/filament/support/tailwind.config.preset.js';
-
-export default {
-    presets: [
-        preset
-    ],
-    content: [
-        './app/Filament/**/*.php',
-        './resources/views/**/*.blade.php',
-        './vendor/filament/**/*.blade.php',
-    ],
-    theme: {
-        extend: {
-            // Custom theme settings here
-        },
-    },
-    plugins: [
-        require('@tailwindcss/forms'),
-        require('@tailwindcss/typography'),
-    ],
-};
+version https://git-lfs.github.com/spec/v1
+oid sha256:fd3161412cb633a8fdacc439907bf50fd47f50ceaefc494be3d4eef9f7e49c2e
+size 473

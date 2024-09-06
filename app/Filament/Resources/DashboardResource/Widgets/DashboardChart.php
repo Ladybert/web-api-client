@@ -1,29 +1,3 @@
-<?php
- 
-namespace App\Filament\Widgets;
- 
-use Filament\Widgets\ChartWidget;
- 
-class DashboardChart extends ChartWidget
-{
-    protected static ?string $heading = 'User Active per Month';
- 
-    protected function getData(): array
-    {
-        return [
-            'datasets' => [
-                [
-                    'label' => 'User Active created',
-                    'data' => [0, 10, 5, 2, 21, 32, 45, 74, 65, 45, 77, 89],
-                ],
-            ],
-            'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-        ];
-    }
- 
-    protected function getType(): string
-    {
-        return 'line';
-    }
-
-}
+version https://git-lfs.github.com/spec/v1
+oid sha256:f12601cff90a80c7ef510d0fe07dde64f3dca51442de2a855232549268620675
+size 669
