@@ -1,3 +1,31 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.project-card {
+    position: relative; /* Membuat posisi relatif untuk elemen kartu */
+    overflow: hidden; /* Menyembunyikan bagian yang melampaui batas kartu */
+}
+
+.project-card::before {
+    content: '';
+    position: absolute; /* Memposisikan gambar latar belakang secara absolut */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('bg-pict.svg'); /* Ganti dengan URL gambar yang sesuai */
+    background-size: cover; /* Menjaga gambar latar belakang untuk memenuhi kontainer */
+    background-position: center; /* Memastikan gambar latar belakang tetap terpusat */
+    transition: transform 0.3s ease; /* Efek transisi untuk transform */
+    z-index: 0; /* Menempatkan elemen sebelum di bawah konten kartu */
+}
+
+.project-card:hover::before {
+    transform: scale(1.1); /* Meningkatkan ukuran gambar latar belakang saat di-hover */
+}
+
+.project-card .content {
+    position: relative; /* Memastikan konten tetap di atas gambar latar belakang */
+    z-index: 1; /* Menempatkan konten di atas gambar latar belakang */
+}

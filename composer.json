@@ -16,6 +16,7 @@
         "laravel/sanctum": "^4.0",
         "laravel/socialite": "^5.15",
         "laravel/tinker": "^2.9",
+        "livewire/livewire": "^3.5",
         "pxlrbt/filament-excel": "^2.3",
         "spatie/laravel-permission": "^6.9"
     },
