@@ -27,7 +27,6 @@
     left: 0;
     right: 0;
     bottom: 0;
-    background-image: url('bg-pict.svg'); /* Ganti dengan URL gambar yang sesuai */
     background-size: cover; /* Menjaga gambar latar belakang untuk memenuhi kontainer */
     background-position: center; /* Memastikan gambar latar belakang tetap terpusat */
     transition: transform 0.3s ease; /* Efek transisi untuk transform */
