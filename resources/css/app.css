@@ -18,6 +18,7 @@
 .project-card {
     position: relative; /* Membuat posisi relatif untuk elemen kartu */
     overflow: hidden; /* Menyembunyikan bagian yang melampaui batas kartu */
+    transition: filter 0.3s ease;
 }
 
 .project-card::before {
@@ -31,6 +32,10 @@
     background-position: center; /* Memastikan gambar latar belakang tetap terpusat */
     transition: transform 0.3s ease; /* Efek transisi untuk transform */
     z-index: 0; /* Menempatkan elemen sebelum di bawah konten kartu */
+}
+
+.project-card:hover {
+    filter: grayscale(1);
 }
 
 .project-card:hover::before {
