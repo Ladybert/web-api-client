@@ -15,6 +15,10 @@
   }
 }
 
+.btn {
+    border-radius: 0.2rem !important;
+}
+
 .project-card {
     position: relative; /* Membuat posisi relatif untuk elemen kartu */
     overflow: hidden; /* Menyembunyikan bagian yang melampaui batas kartu */
